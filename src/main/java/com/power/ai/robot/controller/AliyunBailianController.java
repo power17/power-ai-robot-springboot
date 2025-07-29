@@ -1,5 +1,6 @@
 package com.power.ai.robot.controller;
 
+import com.power.ai.robot.model.AIResponse;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.model.Generation;
@@ -42,7 +43,7 @@ public class AliyunBailianController {
      * @return
      */
     @GetMapping(value = "/generateStream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message) {
+    public Flux<AIResponse> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message) {
         // 构建提示词
         Prompt prompt = new Prompt(new UserMessage(message));
 
@@ -50,7 +51,8 @@ public class AliyunBailianController {
         return chatModel.stream(prompt)
                 .mapNotNull(chatResponse -> {
                     Generation generation = chatResponse.getResult();
-                    return Objects.nonNull(generation) ? generation.getOutput().getText() : null;
+                    String text = generation.getOutput().getText();
+                    return AIResponse.builder().v(text).build();
                 });
 
     }
