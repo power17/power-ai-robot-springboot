@@ -19,7 +19,7 @@ public class ChatClientConfig {
     @Bean
     public ChatClient chatClient(DeepSeekChatModel chatModel, ChatMemory chatMemory) {
         return ChatClient.builder(chatModel)
-                .defaultSystem("请你扮演一名 Java 项目实战专栏的客服人员")
+//                .defaultSystem("请你扮演一名 Java 项目实战专栏的客服人员")
                 .defaultAdvisors(new SimpleLoggerAdvisor(),
                        // new MyLoggerAdvisor(),
                         MessageChatMemoryAdvisor.builder(chatMemory).build()) // 添加 Spring AI 内置的日志记录功能

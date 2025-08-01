@@ -38,7 +38,7 @@ public class ChatClientController {
     public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message,
                                        @RequestParam(value="chatId") String chatId) {
         return chatClient.prompt()
-                .system("请你扮演一名犬小哈 Java 项目实战专栏的客服人员")
+//                .system("请你扮演一名犬小哈 Java 项目实战专栏的客服人员")
                 .user(message) // 提示词
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, chatId))
                 .stream() // 流式输出
