@@ -1,5 +1,7 @@
 package com.power.ai.robot.controller;
 
+import com.power.ai.robot.tools.DateTimeTools;
+import com.power.ai.robot.tools.WeatherTools;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -38,6 +40,7 @@ public class ChatClientController {
     public Flux<String> generateStream(@RequestParam(value = "message", defaultValue = "你是谁？") String message,
                                        @RequestParam(value="chatId") String chatId) {
         return chatClient.prompt()
+                .tools(new DateTimeTools(), new WeatherTools())
 //                .system("请你扮演一名犬小哈 Java 项目实战专栏的客服人员")
                 .user(message) // 提示词
                 .advisors(a -> a.param(ChatMemory.CONVERSATION_ID, chatId))

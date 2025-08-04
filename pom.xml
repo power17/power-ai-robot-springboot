@@ -19,6 +19,7 @@
         <spring-ai.version>1.0.0</spring-ai.version>
         <commons-lang3.version>3.18.0</commons-lang3.version>
         <lombok.version>1.18.30</lombok.version>
+        <jsonschema-generator.version>4.38.0</jsonschema-generator.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -85,6 +86,16 @@
                     <artifactId>slf4j-simple</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.github.victools</groupId>
+            <artifactId>jsonschema-generator</artifactId>
+            <version>${jsonschema-generator.version}</version>
+        </dependency>
+        <!-- MCP Client -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-client-webflux</artifactId>
         </dependency>
 
 
