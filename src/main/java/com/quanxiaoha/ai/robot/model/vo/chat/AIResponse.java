@@ -1,4 +1,4 @@
-package com.quanxiaoha.ai.robot.model;
+package com.quanxiaoha.ai.robot.model.vo.chat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
